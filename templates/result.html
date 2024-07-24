@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Resultats de recherche :</h1>
+        
+        <h2>Images a rechercher</h2>
+        <div class="image-container">
+            <img src="{{ query_image }}" class="img-fluid" alt="Query Image"  style="text-align: center;" style="max-width: 100%; height: auto;">
+        </div>
+        
+        <h2 class="mt-4">Les images similaires</h2>
+        <div class="row">
+            {% for image, distance in similar_images %}
+            <div class="col-md-4" style="text-align: center;">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ url_for('static', filename=image) }}" style="max-width: 30%; height: auto; text-align: center; border: 50% solid;"  alt="Similar Image" >
+                    <div class="card-body">
+                        <p class="card-text">Distance: {{ distance }}</p>
+                    </div>
+                </div>
+             </div>
+            
+            {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional, depending on your needs) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
